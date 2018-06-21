@@ -1,4 +1,4 @@
-FROM
+FROM ubuntu
 
 ADD . /project/eureka-server
 
