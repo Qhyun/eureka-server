@@ -1,15 +1,15 @@
-FROM ubuntu
-
-ADD . /project/eureka-server
-
-WORKDIR  /project/eureka-server
-
-RUN mvn clean package -Dmaven.test.skip=true
-
-COPY /project/eureka-server/target/eureka-server.jar  /usr/src/myapp/eureka-server.jar
-
-WORKDIR  /usr/src/myapp
-
-EXPOSE 8888
-
-ENTRYPOINT java -jar eureka-server.jar
+FROM hub.c.163.com/wuxukun/maven-aliyun:3-jdk-8  
+  
+ADD pom.xml /tmp/build/  
+  
+ADD src /tmp/build/src  
+        #构建应用  
+RUN cd /tmp/build && mvn clean package \  
+        #拷贝编译结果到指定目录  
+        && mv target/*.jar /app.jar \  
+        #清理编译痕迹  
+        && cd / && rm -rf /tmp/build  
+  
+VOLUME /tmp  
+EXPOSE 8888  
+ENTRYPOINT ["java","-jar","/app.jar"]
