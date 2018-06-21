@@ -1,4 +1,4 @@
-FROM maven:latest/jak:8
+FROM jdk:8
 
 ADD . /project/eureka-server
 
