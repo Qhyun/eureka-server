@@ -1,4 +1,4 @@
-FROM hub.c.163.com/wuxukun/maven-aliyun:3-jdk-8  
+FROM  
   
 ADD pom.xml /tmp/build/  
   
