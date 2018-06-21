@@ -1,4 +1,4 @@
-FROM
+FROM maven:3-jdk-8
 
 LABEL description = "this is eureka server"
 
