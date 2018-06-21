@@ -1,10 +1,15 @@
-FROM
+FROM maven:latest/jak:8
 
-LABEL description = "this is eureka server"
+ADD . /project/eureka-server
 
-ADD /app/target/server-eureka.jar /service/
-RUN mkdir -p /service/logs/
-RUN echo $(ls /service/)
-WORKDIR /service
-EXPOSE 8761
-ENTRYPOINT  java -jar /service/server-eureka.jar
+WORKDIR  /project/eureka-server
+
+RUN mvn clean package -Dmaven.test.skip=true
+
+COPY /project/eureka-server/target/eureka-server.jar  /usr/src/myapp/eureka-server.jar
+
+WORKDIR  /usr/src/myapp
+
+EXPOSE 8888
+
+ENTRYPOINT java -jar eureka-server.jar
