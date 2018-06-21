@@ -3,13 +3,10 @@ FROM ubuntu
 ADD pom.xml /tmp/build/  
   
 ADD src /tmp/build/src  
-        #构建应用  
-RUN cd /tmp/build && mvn clean package \  
-        #拷贝编译结果到指定目录  
-        && mv target/*.jar /app.jar \  
-        #清理编译痕迹  
-        && cd / && rm -rf /tmp/build  
-  
-VOLUME /tmp  
+
+WORKDIR  /tmp/build
+
+RUN mvn clean package
+
 EXPOSE 8888  
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java","-jar","target/eureka-server.jar"]
