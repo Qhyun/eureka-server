@@ -1,4 +1,4 @@
-FROM maven3-jdk-8
+FROM ubuntu
   
 ADD pom.xml /tmp/build/  
   
