@@ -1,4 +1,4 @@
-FROM jdk:8
+FROM
 
 ADD . /project/eureka-server
 
